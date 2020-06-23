@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SAW Calc</title>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-grid.css">
+    <link rel="stylesheet" href="../css/bootstrap-reboot.css">
+    <script src="../js/SAWCalc.js"></script>
+    <script src="../js/createInputTable.js"></script>
+</head>
+<body>
+    <h1>Simple Additive Weight Calculator</h1>
+    <div class="">
+        <h3>Masukkan Jumlah Data</h3><br>
+        <input id="jmlData" type="text" name="jmlData" value="">
+        <br>
+        <h3>Masukkan Jumlah Kriteria</h3><br>
+        <input id="jmlKrit" type="text" name="jmlKrit" value="">
+        <br>
+        <button type="submit" name="gengerateTable" onclick="generateTable()">Generate</button>
+    </div>
+
+    <div class="">
+        Input Data
+        <div id="rowValue"></div>
+        <br>
+        <div id="rowValKet"></div>
+        <br>
+        <div id="weightValue"></div>
+        <br>
+        <div id="weightValP"></div>
+        <br>
+        <button type="submit" name="calculate" onclick="calculateSAW()">Submit</button>
+    </div>
+    <br><br><br>
+    <div id="showdata">
+
+    </div>
+
+    <div id="testshowdata"></div>
+</body>
+</html>
