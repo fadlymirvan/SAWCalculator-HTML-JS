@@ -4,7 +4,7 @@ function generateTable() {
     var rowValKet = document.getElementById("rowValKet");
     var colLen = document.getElementById("jmlKrit").value;
     var weightValue = document.getElementById("weightValue");
-    var weightValPValue = document.getElementById("weightValP");
+    // var weightValPValue = document.getElementById("weightValP");
 
     while (rowValue.hasChildNodes()) {
         rowValue.removeChild(rowValue.lastChild);
@@ -65,20 +65,20 @@ function generateTable() {
         weightValue.appendChild(document.createElement("br"));
     }
 
-    while (weightValPValue.hasChildNodes()) {
-        weightValPValue.removeChild(weightValPValue.lastChild);
-    }
-
-    weightValPValue.appendChild(document.createTextNode("Bobot Penilaian"));
-    weightValPValue.appendChild(document.createElement("br"));
-
-    for (let l = 0; l < colLen; l++) {
-        weightValPValue.appendChild(document.createTextNode("Nilai Max Kriteria ke " + (l + 1) + " "));
-        var weightValPInput = document.createElement("input");
-        weightValPInput.type = "text";
-        weightValPInput.id = "weightP[]";
-        weightValPInput.name = "weightP[]";
-        weightValPValue.appendChild(weightValPInput);
-        weightValPValue.appendChild(document.createElement("br"));
-    }
+    // while (weightValPValue.hasChildNodes()) {
+    //     weightValPValue.removeChild(weightValPValue.lastChild);
+    // }
+    //
+    // weightValPValue.appendChild(document.createTextNode("Bobot Penilaian"));
+    // weightValPValue.appendChild(document.createElement("br"));
+    //
+    // for (let l = 0; l < colLen; l++) {
+    //     weightValPValue.appendChild(document.createTextNode("Nilai Max Kriteria ke " + (l + 1) + " "));
+    //     var weightValPInput = document.createElement("input");
+    //     weightValPInput.type = "text";
+    //     weightValPInput.id = "weightP[]";
+    //     weightValPInput.name = "weightP[]";
+    //     weightValPValue.appendChild(weightValPInput);
+    //     weightValPValue.appendChild(document.createElement("br"));
+    // }
 }

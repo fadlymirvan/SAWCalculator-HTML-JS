@@ -2,10 +2,11 @@
 function calculateSAW(){
     var tabData = document.getElementsByName("data[]");
     var bobotData = document.getElementsByName("weightData[]");
-    var maxBobotKritData = document.getElementsByName("weightP[]");
+    // var maxBobotKritData = document.getElementsByName("weightP[]");
     var dataKet;
     var lenData = document.getElementById("jmlData").value;
     var lenKrit = document.getElementById("jmlKrit").value;
+    var limitDataTotal = document.getElementById("jmlBobotP").value;
     var arrayData = Array();
     var arrayBobot = Array();
     var maxBobotKrit = Array();
@@ -21,6 +22,8 @@ function calculateSAW(){
     var finalData = Array();
     var sum;
     var dataKetValue = Array();
+
+
 
     // converting into Array
     for (let i = 0; i < lenData; i ++) {
@@ -42,11 +45,13 @@ function calculateSAW(){
         arrayBobot[i] = parseFloat(arrayBobot[i].value);
     }
 
-    for (let i = 0; i < lenKrit; i++) {
-        maxBobotKrit[i] = maxBobotKritData[i]
-        maxBobotKrit[i] = parseFloat(maxBobotKrit[i].value);
-        limitData[i] = limData(maxBobotKrit[i]);
-    }
+    // for (let i = 0; i < lenKrit; i++) {
+    //     maxBobotKrit[i] = maxBobotKritData[i]
+    //     maxBobotKrit[i] = parseFloat(maxBobotKrit[i].value);
+    //     limitData[i] = limData(maxBobotKrit[i]);
+    // }
+
+    limitDataTotal = parseFloat(limitDataTotal);
 
     // Transpose Matrix Data
     newArrayData = transposeArray(arrayData);
@@ -55,22 +60,30 @@ function calculateSAW(){
     for (let i = 0; i < newArrayData.length ; i++) {
         topVal[i] = MaxValue(newArrayData[i]);
         lowVal[i] = MinValue(newArrayData[i]);
+        limitData[i] = limData(limitDataTotal, topVal[i]);
     }
+
+    console.log(limitData);
 
     // Convert Matrix Data -> Weight Limitation
     for (let i = 0; i < lenKrit; i++) {
         dataConv1[i] = [];
         for (let j = 0; j < lenData; j++) {
-            dataConv1[i][j] = ConvertData(newArrayData[i][j], limitData[i], dataKetValue[i]);
+            // dataConv1[i][j] = ConvertData(newArrayData[i][j], limitData[i], dataKetValue[i]);
+            dataConv1[i][j] = ConvertData(newArrayData[i][j], limitData[i], limitData[i].length, dataKetValue[i]);
         }
     }
-    dataConv1 = [
-        [1, 4, 4, 4, 4],
-        [4, 3, 2, 2, 1],
-        [5, 3, 3, 3, 3],
-        [5, 5, 5, 3, 3],
-        [3, 3, 3, 3, 3]
-    ];
+
+    console.log(dataConv1);
+    // dataConv1 = [
+    //     [1, 4, 4, 4, 4],
+    //     [4, 3, 2, 2, 1],
+    //     [5, 3, 3, 3, 3],
+    //     [5, 5, 5, 3, 3],
+    //     [3, 3, 3, 3, 3]
+    // ];
+
+
     // Find Max and Min Data From dataConvert
     for (let i = 0; i < lenKrit; i++) {
         maxDataConv[i] = MaxValue(dataConv1[i]);
@@ -122,15 +135,15 @@ function MinValue(Data) {
     return Math.min.apply(null, Data);
 }
 
-function limData(Data) {
-    var a, b, c;
-    a = 3/4*Data;
-    b = 2/4*Data;
-    c = 1/4*Data;
-    return [a, b, c];
+function limData(limData, Data) {
+    var limitDataW = [];
+    for (let i = 0; i < (limData-1); i++) {
+        limitDataW[i] = i/limData*Data;
+    }
+    return limitDataW;
 }
 
-function ConvertData(Data, limData, ket) {
+function ConvertData(Data, limData, lenLimData, ket) {
     if (ket === "Benefit") {
         if (Data >= limData[0]) {
             return 1;
