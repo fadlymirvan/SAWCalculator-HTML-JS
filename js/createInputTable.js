@@ -32,7 +32,7 @@ function generateTable() {
     for (let i = 0; i < colLen; i++) {
         var ket;
         ket = ["Benefit", "Cost"];
-        rowValKet.appendChild(document.createTextNode("Keterangan Data ke-" + (i + 1)));
+        rowValKet.appendChild(document.createTextNode("Keterangan Kriteria ke-" + (i + 1)));
         rowValKet.appendChild(document.createElement("br"));
         var rowValKetInput = document.createElement("select");
         rowValKetInput.id = "selectKet"+(i+1);

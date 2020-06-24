@@ -32,7 +32,7 @@ function calculateSAW(){
         }
     }
 
-    for (let i = 0; i < lenData; i++) {
+    for (let i = 0; i < lenKrit; i++) {
         dataKet = document.getElementById("selectKet"+(i+1));
         dataKetValue[i] = dataKet.options[dataKet.selectedIndex].value;
     }
@@ -64,7 +64,13 @@ function calculateSAW(){
             dataConv1[i][j] = ConvertData(newArrayData[i][j], limitData[i], dataKetValue[i]);
         }
     }
-
+    dataConv1 = [
+        [1, 4, 4, 4, 4],
+        [4, 3, 2, 2, 1],
+        [5, 3, 3, 3, 3],
+        [5, 5, 5, 3, 3],
+        [3, 3, 3, 3, 3]
+    ];
     // Find Max and Min Data From dataConvert
     for (let i = 0; i < lenKrit; i++) {
         maxDataConv[i] = MaxValue(dataConv1[i]);
@@ -73,24 +79,26 @@ function calculateSAW(){
         if (dataKetValue[i] === "Benefit"){
             for (let j = 0; j < lenData; j++) {
                 dataConv2[i][j] = dataConv1[i][j]/maxDataConv[i];
+                dataConv2[i][j] = dataConv2[i][j]*arrayBobot[i];
             }
-        } else {
+        } if (dataKetValue[i] === "Cost") {
             for (let j = 0; j < lenData; j++) {
                 dataConv2[i][j] = minDataConv[i]/dataConv1[i][j];
+                dataConv2[i][j] = dataConv2[i][j]*arrayBobot[i];
             }
         }
     }
-
     // reTranspose
     dataConv2 = transposeArray(dataConv2);
 
+    console.log(dataConv2);
 
     // Multiply with Array Bobot
     for (let i = 0; i < lenData; i++) {
         finalData[i] = []
         sum = 0;
         for (let j = 0; j < lenKrit; j++) {
-            finalData[i][j] = dataConv2[i][j] * arrayBobot[j]
+            finalData[i][j] = dataConv2[i][j];
             sum = sum + finalData[i][j];
         }
         finalData[i] = sum;
