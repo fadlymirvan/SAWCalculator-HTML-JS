@@ -2,14 +2,12 @@
 function calculateSAW(){
     var tabData = document.getElementsByName("data[]");
     var bobotData = document.getElementsByName("weightData[]");
-    // var maxBobotKritData = document.getElementsByName("weightP[]");
     var dataKet;
     var lenData = document.getElementById("jmlData").value;
     var lenKrit = document.getElementById("jmlKrit").value;
     var limitDataTotal = document.getElementById("jmlBobotP").value;
     var arrayData = Array();
     var arrayBobot = Array();
-    var maxBobotKrit = Array();
     var newArrayData;
     var topVal = Array();
     var lowVal = Array();
