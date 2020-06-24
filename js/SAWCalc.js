@@ -23,8 +23,6 @@ function calculateSAW(){
     var sum;
     var dataKetValue = Array();
 
-
-
     // converting into Array
     for (let i = 0; i < lenData; i ++) {
         arrayData[i] = [];
@@ -34,7 +32,6 @@ function calculateSAW(){
             counter++;
         }
     }
-
     for (let i = 0; i < lenKrit; i++) {
         dataKet = document.getElementById("selectKet"+(i+1));
         dataKetValue[i] = dataKet.options[dataKet.selectedIndex].value;
@@ -63,14 +60,17 @@ function calculateSAW(){
         limitData[i] = limData(limitDataTotal, topVal[i]);
     }
 
-    console.log(limitData);
-
     // Convert Matrix Data -> Weight Limitation
     for (let i = 0; i < lenKrit; i++) {
         dataConv1[i] = [];
         for (let j = 0; j < lenData; j++) {
+            console.log(newArrayData[i][j]);
+            console.log(limitData[i]);
+            console.log(limitData[i].length);
+            console.log(dataKetValue[i]);
             // dataConv1[i][j] = ConvertData(newArrayData[i][j], limitData[i], dataKetValue[i]);
             dataConv1[i][j] = ConvertData(newArrayData[i][j], limitData[i], limitData[i].length, dataKetValue[i]);
+            console.log(dataConv1[i][j]);
         }
     }
 
@@ -82,7 +82,6 @@ function calculateSAW(){
     //     [5, 5, 5, 3, 3],
     //     [3, 3, 3, 3, 3]
     // ];
-
 
     // Find Max and Min Data From dataConvert
     for (let i = 0; i < lenKrit; i++) {
@@ -103,9 +102,6 @@ function calculateSAW(){
     }
     // reTranspose
     dataConv2 = transposeArray(dataConv2);
-
-    console.log(dataConv2);
-
     // Multiply with Array Bobot
     for (let i = 0; i < lenData; i++) {
         finalData[i] = []
@@ -116,16 +112,13 @@ function calculateSAW(){
         }
         finalData[i] = sum;
     }
-
     //Test Show Data
     console.log(finalData);
-
 }
 
 function transposeArray(matrixData) {
     return matrixData[0].map((col, c) => matrixData.map((row, r) => matrixData[r][c]));
 }
-
 
 function MaxValue(Data) {
     return Math.max.apply(null, Data);
@@ -137,32 +130,62 @@ function MinValue(Data) {
 
 function limData(limData, Data) {
     var limitDataW = [];
-    for (let i = 0; i < (limData-1); i++) {
-        limitDataW[i] = i/limData*Data;
+    for (let i = 0; i < limData; i++) {
+        limitDataW[i] = i/limData * Data;
     }
     return limitDataW;
 }
 
 function ConvertData(Data, limData, lenLimData, ket) {
     if (ket === "Benefit") {
-        if (Data >= limData[0]) {
-            return 1;
-        } else if (Data < limData[0] || Data >= limData[1]) {
-            return 0.75;
-        } else if (Data < limData[1] || Data >= limData[2]) {
-            return 0.5;
-        } else {
-            return 0.25;
+        // if (Data >= limData[0]) {
+        //     return 1;
+        // } else if (Data < limData[0] || Data >= limData[1]) {
+        //     return 0.75;
+        // } else if (Data < limData[1] || Data >= limData[2]) {
+        //     return 0.5;
+        // } else {
+        //     return 0.25;
+        // }
+        let a = true;
+        let i = 0;
+        while(a) {
+            if (limData[i] === 0){
+                i++;
+            } else if (Data < limData[i]) {
+                a = false;
+                return i/lenLimData;
+            } else if (i === lenLimData){
+                a = false;
+                return 1;
+            } else {
+                i++;
+            }
         }
     } else {
-        if (Data >= limData[2]) {
-            return 1;
-        } else if (Data < limData[2] || Data >= limData[1]) {
-            return 0.75;
-        } else if (Data < limData[1] || Data >= limData[1]) {
-            return 0.5;
-        } else {
-            return 0.25;
+        // if (Data >= limData[2]) {
+        //     return 1;
+        // } else if (Data < limData[2] || Data >= limData[1]) {
+        //     return 0.75;
+        // } else if (Data < limData[1] || Data >= limData[1]) {
+        //     return 0.5;
+        // } else {
+        //     return 0.25;
+        // }
+        let b = true;
+        let i = 0;
+        while(b) {
+            if (limData[i] === 0){
+                i++;
+            } else if (Data < limData[i]) {
+                b = false;
+                return i/lenLimData;
+            } else if (i === lenLimData){
+                b = false;
+                return 1;
+            } else {
+                i++;
+            }
         }
     }
 }
