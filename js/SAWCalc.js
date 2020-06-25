@@ -126,7 +126,6 @@ function calculateSAW(){
     }
 
     // Show Data
-    console.log(finalData);
     var lenfinalData = finalData.length;
     showData(finalData, lenfinalData);
 }
@@ -191,17 +190,39 @@ function showData(data, lenData) {
     printResult.appendChild(document.createTextNode("Hasil Akhir : "));
     printResult.appendChild(document.createElement("br"));
     var maxVal = MaxValue(data);
+    var indexMaxVal = Array();
+
+    for (let i = 0; i < lenData; i++) {
+        if ((data[i]) >= maxVal) {
+            indexMaxVal.push(i);
+        }
+    }
 
     for (let i = 0; i < lenData; i++) {
         printResult.appendChild(document.createTextNode("Data " + (i+1) + " : "));
         if (data[i] === maxVal) {
-            console.log(i);
-            printResult.style.color = "00FF00";
-            printResult.appendChild(document.createTextNode(data[i]));
+            // var markRes = document.createElement("span");
+            // var c = document.appendChild(document.createTextNode(data[i]));
+            // markRes.appendChild(c);
+            // printResult.appendChild(markRes);
+            // markRes.style.color = "00FF00";
+            var container = document.createElement("span");
+            var text = document.createTextNode("data[i]");
+            container.appendChild(text);
+            printResult.appendChild(container);
+
+            container.style.color = "blue";
         } else {
             printResult.style.color = "000000";
             printResult.appendChild(document.createTextNode(data[i]));
         }
+        printResult.appendChild(document.createElement("br"));
+    }
+    printResult.appendChild(document.createElement("br"));
+
+    for (let j = 0; j < indexMaxVal.length; j++) {
+        printResult.appendChild(document.createTextNode("Nilai Tertinggi ada pada Data ke-" + (j+1)));
+        printResult.appendChild(document.createTextNode(", dengan Nilai : " + maxVal));
         printResult.appendChild(document.createElement("br"));
     }
 }
