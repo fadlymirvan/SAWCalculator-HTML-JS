@@ -7,6 +7,7 @@ function calculateSAW(){
     var lenData = document.getElementById("jmlData").value;
     var lenKrit = document.getElementById("jmlKrit").value;
     var limitDataTotal = document.getElementById("jmlBobotP").value;
+    var printResult = document.getElementById("showdata");
     var arrayData = Array();
     var arrayBobot = Array();
     var newArrayData;
@@ -21,6 +22,10 @@ function calculateSAW(){
     var finalData = Array();
     var sum;
     var dataKetValue = Array();
+
+    while (printResult.hasChildNodes()) {
+        printResult.removeChild(printResult.lastChild);
+    }
 
     while (printStep.hasChildNodes()) {
         printStep.removeChild(printStep.lastChild);
