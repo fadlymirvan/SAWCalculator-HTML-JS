@@ -28,6 +28,10 @@ function generateTable() {
         rowValue.appendChild(document.createElement("br"));
     }
 
+    while (rowValKet.hasChildNodes()) {
+        rowValKet.removeChild(rowValKet.lastChild);
+    }
+
     for (let i = 0; i < colLen; i++) {
         var ket;
         ket = ["Benefit", "Cost"];

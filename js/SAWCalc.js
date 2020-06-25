@@ -22,6 +22,10 @@ function calculateSAW(){
     var sum;
     var dataKetValue = Array();
 
+    while (printStep.hasChildNodes()) {
+        printStep.removeChild(printStep.lastChild);
+    }
+
     // converting into Array
     printStep.appendChild(document.createTextNode("Matrix Awal : "));
     printStep.appendChild(document.createElement("br"));
