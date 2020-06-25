@@ -28,7 +28,7 @@
                         </h1>
                         <h5 class="text-black-50 font-ram font-size-18 text-center">Created by: Fadly Muhammad Irvan,
                             Fajrian Nispi,
-                            and Muhammad Irfan Maulana
+                            and Muhamad Irfan Maulana
                         </h5>
                         <div class="bd-highlight text-center"><a href="#generate" class="btn btn-info">Get
                                 Started</a>
@@ -66,13 +66,13 @@
                                 <input type="text" class="form-control" id="jmlKrit" placeholder="Jumlah Kriteria">
                             </div>
                             <div class="form-group">
-                                <label for="jmlBobotP">Masukkan Jumlah Bobot Penilaian</label>
+                                <label for="jmlBobotP">Masukkan Banyaknya Bobot Penilaian</label>
                                 <input type="text" class="form-control" id="jmlBobotP"
-                                    placeholder="Jumlah Bobot Penilaian">
+                                    placeholder="Banyaknya Bobot Penilaian">
                             </div>
                             <!-- <button class="btn btn-info" type="submit" name="gengerateTable" onclick="generateTable()"
                                 href="#ability"><a>Generate</a></button> -->
-                            <div class="bd-highlight" type="submit" name="gengerateTable" onclick="generateTable()"><a
+                            <div class="bd-highlight" type="submit" name="generateTable" onclick="generateTable()"><a
                                     href="#input" class="btn btn-info">Generate</a>
                             </div>
                         </form>
@@ -120,7 +120,7 @@
                             </div>
                         </div>
                         <div class="col-sm-5">
-                            <img src="../assets/about.svg" alt="profile image" class="img-fluid">
+                            <img src="../assets/process.svg" alt="profile image" class="img-fluid">
                         </div>
 
                     </div>
@@ -140,8 +140,8 @@
                 </div>
 
                 <div class="row m-0">
-                    <div class="col-sm-1"></div>
-                    <div class="col">
+                    <div class="col"></div>
+                    <div class="col-sm-6">
                         <div class="card text-white bg-info mb-3" style="width: 400px;">
                             <div class="card-header">Perhitungan</div>
                             <div class="card-body">
@@ -149,12 +149,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-sm-6">
                         <div class="card text-white bg-success mb-3" style="width: 400px;">
                             <div class="card-header">Hasil Akhir</div>
                             <div class="card-body">
                                 <div id="showdata"></div>
-                                <div class="bd-highlight" type="submit" name="clear" onclick="clear()"><a
+                                <div class="bd-highlight" type="submit" name="clear" onclick="clearAllInput()"><a
                                         href="#generate" class="btn btn-info">Hitung
                                         Lagi</a>
                                 </div>
@@ -210,6 +210,7 @@
     <link rel="stylesheet" href="../css/bootstrap-reboot.css">
     <script src="../js/SAWCalc.js"></script>
     <script src="../js/createInputTable.js"></script>
+    <script src="../js/clearData.js"></script>
 </body>
 
 </html>

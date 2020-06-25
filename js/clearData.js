@@ -6,6 +6,7 @@ function clearAllInput() {
     var weightValue = document.getElementById("weightValue");
 
 
+
     while (printResult.hasChildNodes()) {
         printResult.removeChild(printResult.lastChild);
     }

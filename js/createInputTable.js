@@ -12,7 +12,7 @@ function generateTable() {
     rowValue.appendChild(document.createTextNode("Data"));
     rowValue.appendChild(document.createElement("br"));
 
-    for (let i = 0; i < dataLen; i++){
+    for (let i = 0; i < dataLen; i++) {
         rowValue.appendChild(document.createTextNode("Data Ke-" + (i + 1)));
         rowValue.appendChild(document.createElement("br"));
 
@@ -38,13 +38,12 @@ function generateTable() {
     for (let i = 0; i < colLen; i++) {
         var ket;
         ket = ["Benefit", "Cost"];
-        rowValKet.appendChild(document.createTextNode("Keterangan Kriteria ke-" + (i + 1)));
-        rowValKet.appendChild(document.createElement("br"));
+        rowValKet.appendChild(document.createTextNode("Keterangan Kriteria ke-" + (i + 1) + " "));
         var rowValKetInput = document.createElement("select");
-        rowValKetInput.id = "selectKet"+(i+1);
-        rowValKetInput.name = "selectKet"+(i+1);
+        rowValKetInput.id = "selectKet" + (i + 1);
+        rowValKetInput.name = "selectKet" + (i + 1);
         rowValKet.appendChild(rowValKetInput);
-        rowValKet.appendChild(document.createElement("br"));
+
         for (let k = 0; k < ket.length; k++) {
             var rowValKetOpt = document.createElement("option");
             rowValKetOpt.value = ket[k];
@@ -58,7 +57,7 @@ function generateTable() {
         weightValue.removeChild(weightValue.lastChild);
     }
 
-    weightValue.appendChild(document.createTextNode("Bobot Kriteria"));
+    weightValue.appendChild(document.createTextNode("Bobot Kriteria (Gunakan tanda titik (.) untuk bilangan desimal)"));
     weightValue.appendChild(document.createElement("br"));
 
     for (let k = 0; k < colLen; k++) {
