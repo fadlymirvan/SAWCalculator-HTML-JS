@@ -32,6 +32,9 @@ function generateTable() {
         rowValKet.removeChild(rowValKet.lastChild);
     }
 
+    rowValKet.appendChild(document.createTextNode("Keterangan Kriteria"));
+    rowValKet.appendChild(document.createElement("br"));
+
     for (let i = 0; i < colLen; i++) {
         var ket;
         ket = ["Benefit", "Cost"];
@@ -55,11 +58,11 @@ function generateTable() {
         weightValue.removeChild(weightValue.lastChild);
     }
 
-    weightValue.appendChild(document.createTextNode("Bobot"));
+    weightValue.appendChild(document.createTextNode("Bobot Kriteria"));
     weightValue.appendChild(document.createElement("br"));
 
     for (let k = 0; k < colLen; k++) {
-        weightValue.appendChild(document.createTextNode("Bobot " + (k + 1) + " "));
+        weightValue.appendChild(document.createTextNode("Bobot Kriteria ke-" + (k + 1) + " "));
         var weightInput = document.createElement("input");
         weightInput.type = "text";
         weightInput.id = "weightData[]";

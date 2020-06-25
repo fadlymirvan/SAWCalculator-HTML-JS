@@ -82,19 +82,25 @@ function calculateSAW(){
     printStep.appendChild(createTable(transposeArray(dataConv1)));
 
     // Find Max and Min Data From dataConvert
+    var dataConv2flag = Array();
     for (let i = 0; i < lenKrit; i++) {
         maxDataConv[i] = MaxValue(dataConv1[i]);
         minDataConv[i] = MinValue(dataConv1[i]);
         dataConv2[i] = [];
+        dataConv2flag[i] = [];
         if (dataKetValue[i] === "Benefit"){
             for (let j = 0; j < lenData; j++) {
                 dataConv2[i][j] = dataConv1[i][j]/maxDataConv[i];
-                dataConv2[i][j] = dataConv2[i][j]*arrayBobot[i];
+                var a = dataConv2[i][j]*arrayBobot[i];
+                dataConv2[i][j] = a;
+                dataConv2flag[i][j] = a.toFixed(2);
             }
         } if (dataKetValue[i] === "Cost") {
             for (let j = 0; j < lenData; j++) {
                 dataConv2[i][j] = minDataConv[i]/dataConv1[i][j];
-                dataConv2[i][j] = dataConv2[i][j]*arrayBobot[i];
+                var b = dataConv2[i][j]*arrayBobot[i];
+                dataConv2[i][j] = b;
+                dataConv2flag[i][j] = b.toFixed(2);
             }
         }
     }
@@ -106,7 +112,7 @@ function calculateSAW(){
     printStep.appendChild(document.createElement("br"));
     printStep.appendChild(document.createTextNode("Matrix Normalisasi : "));
     printStep.appendChild(document.createElement("br"));
-    printStep.appendChild(createTable(dataConv2));
+    printStep.appendChild(createTable(transposeArray(dataConv2flag)));
 
     // Multiply with Array Bobot
     for (let i = 0; i < lenData; i++) {
@@ -184,9 +190,18 @@ function showData(data, lenData) {
     var printResult = document.getElementById("showdata");
     printResult.appendChild(document.createTextNode("Hasil Akhir : "));
     printResult.appendChild(document.createElement("br"));
+    var maxVal = MaxValue(data);
+
     for (let i = 0; i < lenData; i++) {
         printResult.appendChild(document.createTextNode("Data " + (i+1) + " : "));
-        printResult.appendChild(document.createTextNode(data[i]));
+        if (data[i] === maxVal) {
+            console.log(i);
+            printResult.style.color = "00FF00";
+            printResult.appendChild(document.createTextNode(data[i]));
+        } else {
+            printResult.style.color = "000000";
+            printResult.appendChild(document.createTextNode(data[i]));
+        }
         printResult.appendChild(document.createElement("br"));
     }
 }
