@@ -1,8 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAW Calc</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+
+    <main id="site-main">
+
+        <!-- site-banner area -->
+        <section class="site-banner" id="home">
+            <div class="banner-area">
+                <div class="banner-carve">
+                    <div class="container my-5">
+                        <h1 class="text-black font-staat font-size-40 text-uppercase text-center">Simple
+                            Additive
+                            Weighting (SAW) Calculator
+                        </h1>
+                        <h5 class="text-black-50 font-ram font-size-18 text-center">Created by: Fadly Muhammad Irvan,
+                            Fajrian Nispi,
+                            and Muhammad Irfan Maulana
+                        </h5>
+                        <div class="bd-highlight text-center"><a href="#generate" class="btn btn-info">Get
+                                Started</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+        <!-- #site-banner area -->
+
+        <!-- generate area -->
+        <section class="about px-4 my-7" id="generate">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 class="text-uppercase font-staat font-size-34">Generate Data</h1>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="row m-5">
+                    <div class="col-sm-5 pl-0">
+                        <img src="../assets/about.svg" alt="profile image" class="img-fluid">
+                    </div>
+                    <div class="col-sm-5">
+                        <form>
+                            <div class="form-group">
+                                <label for="jmlData">Masukkan Jumlah Data</label>
+                                <input type="text" class="form-control" id="jmlData" placeholder="Jumlah Data">
+                            </div>
+                            <div class="form-group">
+                                <label for="jmlKrit">Masukkan Jumlah Kriteria</label>
+                                <input type="text" class="form-control" id="jmlKrit" placeholder="Jumlah Kriteria">
+                            </div>
+                            <div class="form-group">
+                                <label for="jmlBobotP">Masukkan Jumlah Bobot Penilaian</label>
+                                <input type="text" class="form-control" id="jmlBobotP"
+                                    placeholder="Jumlah Bobot Penilaian">
+                            </div>
+                            <!-- <button class="btn btn-info" type="submit" name="gengerateTable" onclick="generateTable()"
+                                href="#ability"><a>Generate</a></button> -->
+                            <div class="bd-highlight" type="submit" name="gengerateTable" onclick="generateTable()"><a
+                                    href="#input" class="btn btn-info">Generate</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- #generate area -->
+
+
+        <!-- #input -->
+        <section class="site-banner" id="input">
+            <div class="parallax">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1 class="text-uppercase font-staat font-size-34">Input Data</h1>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="row m-0">
+                        <div class="col-sm-7">
+                            <div class="container">
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div id="rowValue"></div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="row-my-5">
+                                            <div id="rowValKet"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row-my-5">
+                                            <div id="weightValue"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="bd-highlight" type="submit" name="calculate" onclick="calculateSAW()"><a
+                                    href="#result" class="btn btn-info">Submit</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <img src="../assets/about.svg" alt="profile image" class="img-fluid">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </section>
+        <!-- #input -->
+
+        <!-- result -->
+        <section class=" services-area" id="result">
+            <div class="container">
+                <div class="do">
+                    <h1 class="text-uppercase font-staat font-size-34">Result</h1>
+                    <hr>
+                </div>
+
+                <div class="row m-0">
+                    <div class="col-sm-1"></div>
+                    <div class="col">
+                        <div class="card text-white bg-info mb-3" style="width: 400px;">
+                            <div class="card-header">Perhitungan</div>
+                            <div class="card-body">
+                                <div id="stepCalculating"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card text-white bg-success mb-3" style="width: 400px;">
+                            <div class="card-header">Hasil Akhir</div>
+                            <div class="card-body">
+                                <div id="showdata"></div>
+                                <div class="bd-highlight" type="submit" name="clear" onclick="clear()"><a
+                                        href="#generate" class="btn btn-info">Hitung
+                                        Lagi</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- #result -->
+
+        <footer>
+            <div class="text-center">
+                <img src="../assets/undraw_online_friends_x73e.svg" alt="end" class="img">
+                <h6 class="font-ram font-size-16 text-black-50">Copyright &#169; Kelompok 3
+                    <script
+                        type='text/javascript'>var creditsyear = new Date(); document.write(creditsyear.getFullYear());</script>
+                    <a expr:href='data:blog.homepageUrl'>
+                        <data:blog.title /></a>. All rights reserved.</h6>
+            </div>
+
+
+        </footer>
+
+
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+        integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0=" crossorigin="anonymous"></script>
+
+    <script src="./vendor/typed/typed.min.js"></script>
+
+    <script src="./index.js"></script>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="../css/bootstrap.css">
@@ -10,39 +210,6 @@
     <link rel="stylesheet" href="../css/bootstrap-reboot.css">
     <script src="../js/SAWCalc.js"></script>
     <script src="../js/createInputTable.js"></script>
-    <script src="../js/clearData.js"></script>
-</head>
-<body>
-    <h1>Simple Additive Weight Calculator</h1>
-    <div class="">
-        <h3>Masukkan Jumlah Data</h3><br>
-        <input id="jmlData" type="text" name="jmlData" value="">
-        <br>
-        <h3>Masukkan Jumlah Kriteria</h3><br>
-        <input id="jmlKrit" type="text" name="jmlKrit" value="">
-        <br>
-        <h3>Masukkan Jumlah Bobot Penilaian</h3><br>
-        <input id="jmlBobotP" type="text" name="jmlBobotP" value="">
-        <br>
-        <button type="submit" name="gengerateTable" onclick="generateTable()">Generate</button>
-    </div>
-
-    <div class="">
-        Input Data
-        <div id="rowValue"></div>
-        <br>
-        <div id="rowValKet"></div>
-        <br>
-        <div id="weightValue"></div>
-        <br>
-        <button type="submit" name="calculate" onclick="calculateSAW()">Submit</button>
-    </div>
-    <br><br><br>
-    <div id="stepCalculating"></div>
-    <br><br>
-    <div class="">
-        <div id="showdata"></div>
-        <button type="submit" name="resetField" onclick="clearAllInput()">Hitung Lagi</button>
-    </div>
 </body>
+
 </html>
