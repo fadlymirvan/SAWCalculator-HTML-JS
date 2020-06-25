@@ -4,7 +4,6 @@ function generateTable() {
     var rowValKet = document.getElementById("rowValKet");
     var colLen = document.getElementById("jmlKrit").value;
     var weightValue = document.getElementById("weightValue");
-    // var weightValPValue = document.getElementById("weightValP");
 
     while (rowValue.hasChildNodes()) {
         rowValue.removeChild(rowValue.lastChild);

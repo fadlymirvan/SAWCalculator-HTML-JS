@@ -3,6 +3,7 @@ function calculateSAW(){
     var tabData = document.getElementsByName("data[]");
     var bobotData = document.getElementsByName("weightData[]");
     var dataKet;
+    var printStep = document.getElementById("stepCalculating");
     var lenData = document.getElementById("jmlData").value;
     var lenKrit = document.getElementById("jmlKrit").value;
     var limitDataTotal = document.getElementById("jmlBobotP").value;
@@ -22,6 +23,8 @@ function calculateSAW(){
     var dataKetValue = Array();
 
     // converting into Array
+    printStep.appendChild(document.createTextNode("Matrix Awal : "));
+    printStep.appendChild(document.createElement("br"));
     for (let i = 0; i < lenData; i ++) {
         arrayData[i] = [];
         for (let j = 0; j < lenKrit; j++) {
@@ -30,6 +33,7 @@ function calculateSAW(){
             counter++;
         }
     }
+
     for (let i = 0; i < lenKrit; i++) {
         dataKet = document.getElementById("selectKet"+(i+1));
         dataKetValue[i] = dataKet.options[dataKet.selectedIndex].value;
@@ -42,6 +46,9 @@ function calculateSAW(){
 
     limitDataTotal = parseFloat(limitDataTotal);
 
+    // Print First Step to HTML
+    printStep.appendChild(createTable(arrayData));
+
     // Transpose Matrix Data
     newArrayData = transposeArray(arrayData);
 
@@ -51,14 +58,19 @@ function calculateSAW(){
         lowVal[i] = MinValue(newArrayData[i]);
         limitData[i] = limData(limitDataTotal, topVal[i]);
     }
-    console.log(limitData);
     // Convert Matrix Data -> Weight Limitation
     for (let i = 0; i < lenKrit; i++) {
         dataConv1[i] = [];
         for (let j = 0; j < lenData; j++) {
-            dataConv1[i][j] = ConvertData(newArrayData[i][j], limitData[i], limitData[i].length, dataKetValue[i]);
+            dataConv1[i][j] = ConvertData(newArrayData[i][j], limitData[i], limitData[i].length, dataKetValue[i]).toFixed(2);
         }
     }
+
+    // Print Matrix Conv
+    printStep.appendChild(document.createElement("br"));
+    printStep.appendChild(document.createTextNode("Matrix Konversi ke Bobot : "));
+    printStep.appendChild(document.createElement("br"));
+    printStep.appendChild(createTable(transposeArray(dataConv1)));
 
     // Find Max and Min Data From dataConvert
     for (let i = 0; i < lenKrit; i++) {
@@ -77,8 +89,16 @@ function calculateSAW(){
             }
         }
     }
+
     // reTranspose
     dataConv2 = transposeArray(dataConv2);
+
+    // Print Matrix Normal
+    printStep.appendChild(document.createElement("br"));
+    printStep.appendChild(document.createTextNode("Matrix Normalisasi : "));
+    printStep.appendChild(document.createElement("br"));
+    printStep.appendChild(createTable(dataConv2));
+
     // Multiply with Array Bobot
     for (let i = 0; i < lenData; i++) {
         finalData[i] = []
@@ -87,11 +107,13 @@ function calculateSAW(){
             finalData[i][j] = dataConv2[i][j];
             sum = sum + finalData[i][j];
         }
-        finalData[i] = sum;
+        finalData[i] = sum.toFixed(2);
     }
 
     // Show Data
     console.log(finalData);
+    var lenfinalData = finalData.length;
+    showData(finalData, lenfinalData);
 }
 
 function transposeArray(matrixData) {
@@ -147,4 +169,29 @@ function ConvertData(Data, limData, lenLimData, ket) {
             }
         }
     }
+}
+
+function showData(data, lenData) {
+    var printResult = document.getElementById("showdata");
+    printResult.appendChild(document.createTextNode("Hasil Akhir : "));
+    printResult.appendChild(document.createElement("br"));
+    for (let i = 0; i < lenData; i++) {
+        printResult.appendChild(document.createTextNode("Data " + (i+1) + " : "));
+        printResult.appendChild(document.createTextNode(data[i]));
+        printResult.appendChild(document.createElement("br"));
+    }
+}
+
+function createTable(Data) {
+    var table =  document.createElement("table");
+    for (let i = 0; i < Data.length; i++) {
+        var row = document.createElement("tr");
+        for (let j = 0; j < Data[i].length; j++) {
+            var col = document.createElement("td");
+            col.textContent = Data[i][j];
+            row.appendChild(col);
+        }
+        table.appendChild(row);
+    }
+    return table;
 }
