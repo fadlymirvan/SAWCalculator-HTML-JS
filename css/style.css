@@ -6,7 +6,7 @@ body{
 }
 
 table, th, td {
-    border: 2px solid black;
+    border: 2px solid white;
     width: 50%;
     text-align: center;
 }
