@@ -5,6 +5,12 @@ body{
     padding: 0;
 }
 
+table, th, td {
+    border: 2px solid black;
+    width: 50%;
+    text-align: center;
+}
+
 :root{
     --color-black: #000000;
     --color-white: #ffffff;
